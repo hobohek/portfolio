@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>张俊杰 — B2B Solution Sales</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,450;14..32,500;14..32,550;14..32,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf8;
+    --surface: #ffffff;
+    --text: #1a1a1b;
+    --text2: #6e6e77;
+    --text3: #9d9da8;
+    --accent: #e55b3c;
+    --accent-soft: #fdf1ed;
+    --border: #e8e8e4;
+    --border-hover: #d4d4cf;
+    --shadow: 0 1px 2px rgba(0,0,0,0.03);
+    --shadow-card: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.03);
+    --radius: 14px;
+    --radius-sm: 10px;
+    --font-serif: 'Fraunces', 'Noto Serif SC', 'Source Han Serif SC', 'STSong', 'SimSun', serif;
+    --font-sans: 'Inter', 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.018;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  ::selection { background: var(--accent); color: #fff; }
+
+  /* ---- Nav ---- */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(250,250,248,0.72);
+    backdrop-filter: saturate(180%) blur(16px);
+    -webkit-backdrop-filter: saturate(180%) blur(16px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .35s ease;
+  }
+  nav.scrolled { border-bottom-color: var(--border); }
+  nav .nav-inner {
+    max-width: 800px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 32px; height: 52px;
+  }
+  nav .nav-logo {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 1.08rem;
+    color: var(--text);
+    cursor: pointer;
+    letter-spacing: -0.3px;
+    transition: opacity .25s;
+  }
+  nav .nav-logo:hover { opacity: 0.65; }
+  nav .nav-links { display: flex; gap: 4px; }
+  nav .nav-links a {
+    color: var(--text2);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 450;
+    padding: 6px 14px;
+    border-radius: 20px;
+    transition: all .25s ease;
+    letter-spacing: 0.1px;
+  }
+  nav .nav-links a:hover { color: var(--text); background: rgba(0,0,0,0.04); }
+  nav .nav-links a.active { color: var(--accent); background: var(--accent-soft); font-weight: 500; }
+
+  /* ---- Section shared ---- */
+  section {
+    padding: 100px 32px;
+    position: relative;
+  }
+
+  .section-tag {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  /* ---- Home ---- */
+  #home {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .home-content { max-width: 640px; }
+
+  .home-content .avatar {
+    width: 80px; height: 80px; border-radius: 50%;
+    object-fit: cover; object-position: 50% 25%;
+    margin: 0 auto 32px; display: block;
+    box-shadow: 0 0 0 3px #fff, 0 0 0 6px var(--accent), 0 4px 20px rgba(229,91,60,0.18);
+    transition: all .4s cubic-bezier(0.16,1,0.3,1);
+    filter: contrast(1.05) saturate(1.1);
+  }
+  .home-content .avatar:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 3px #fff, 0 0 0 6px var(--accent), 0 8px 28px rgba(229,91,60,0.28);
+  }
+
+  .home-content h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(2.6rem, 5.5vw, 4.8rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+  .home-content h1 .accent { color: var(--accent); font-style: italic; }
+
+  .home-content .lead {
+    font-size: 1rem;
+    color: var(--text2);
+    font-weight: 400;
+    line-height: 1.6;
+    margin-bottom: 28px;
+    max-width: 460px;
+    margin-left: auto;
+    margin-right: auto;
+    letter-spacing: -0.1px;
+  }
+
+  .home-content .chips {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 7px;
+    margin-bottom: 40px;
+  }
+  .home-content .chip {
+    font-size: 0.78rem; padding: 6px 16px; border-radius: 18px;
+    background: var(--surface); color: var(--text2); font-weight: 440;
+    border: 1px solid var(--border); transition: all .2s ease;
+    text-decoration: none;
+  }
+  .home-content .chip:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+  .home-content .chip.fill { background: var(--text); color: #fff; border-color: var(--text); }
+  .home-content .chip.fill:hover { background: #333; border-color: #333; }
+  .home-content .chip.clickable { cursor: pointer; position: relative; }
+  .home-content .chip.clickable::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 1px;
+    background: var(--accent);
+    transition: width .25s ease;
+  }
+  .home-content .chip.clickable:hover::after { width: 60%; }
+
+  /* ---- Home KPI row ---- */
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 560px;
+    margin: 0 auto;
+    gap: 0;
+    border-top: 1px solid var(--border);
+    padding-top: 40px;
+  }
+  .kpi { text-align: center; }
+  .kpi.clickable {
+    cursor: pointer;
+    transition: transform .3s cubic-bezier(0.16,1,0.3,1);
+    position: relative;
+  }
+  .kpi.clickable:hover { transform: translateY(-3px); }
+  .kpi.clickable:hover .number { color: #c94a2e; }
+  .kpi.clickable::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 1px;
+    background: var(--accent);
+    transition: width .3s ease;
+  }
+  .kpi.clickable:hover::after { width: 50%; }
+  .kpi .number {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--accent);
+    line-height: 1;
+    letter-spacing: -0.5px;
+  }
+  .kpi .unit { font-size: 0.85rem; font-weight: 400; }
+  .kpi .label { font-size: 0.72rem; color: var(--text3); margin-top: 6px; font-weight: 420; letter-spacing: 0.2px; }
+
+  /* ---- Section Header ---- */
+  .section-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .section-header h2 {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    font-weight: 400;
+    letter-spacing: -0.8px;
+    margin-bottom: 10px;
+    line-height: 1.15;
+  }
+  .section-header p {
+    font-size: 0.9rem;
+    color: var(--text3);
+    font-weight: 420;
+    max-width: 420px;
+    margin: 0 auto;
+    letter-spacing: -0.1px;
+  }
+
+  /* ---- Projects ---- */
+  #projects { background: var(--surface); }
+
+  .tab-bar {
+    display: flex; justify-content: center; gap: 2px;
+    margin-bottom: 36px;
+    background: var(--bg); border-radius: 22px; padding: 3px;
+    border: 1px solid var(--border);
+    width: fit-content; margin-left: auto; margin-right: auto;
+  }
+  .tab-btn {
+    padding: 7px 18px; border-radius: 20px; border: none; background: transparent;
+    font-size: 0.78rem; font-weight: 440; color: var(--text2); cursor: pointer;
+    transition: all .2s ease; font-family: var(--font-sans); letter-spacing: 0.1px;
+  }
+  .tab-btn.active { background: var(--surface); color: var(--text); box-shadow: var(--shadow); font-weight: 500; }
+  .tab-btn:hover:not(.active) { color: var(--text); }
+
+  .project-grid {
+    max-width: 720px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  }
+  .project-card {
+    background: var(--bg); border-radius: var(--radius);
+    border: 1px solid var(--border);
+    padding: 28px;
+    cursor: pointer;
+    transition: all .4s cubic-bezier(0.16,1,0.3,1);
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card:nth-child(even) { margin-top: 12px; }
+  .project-card:nth-child(odd) { margin-top: -6px; }
+  .project-card:hover { border-color: var(--accent); box-shadow: var(--shadow-card); transform: translateY(-3px); }
+  .project-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(229,91,60,0.04) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity .4s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .project-card:hover::after { opacity: 1; }
+  .project-card .p-num,
+  .project-card .p-title,
+  .project-card .p-desc,
+  .project-card .p-tags { position: relative; z-index: 1; }
+  .project-card .p-num {
+    font-family: var(--font-serif);
+    font-size: 0.82rem;
+    color: var(--accent);
+    font-weight: 500;
+    font-style: italic;
+    margin-bottom: 12px;
+  }
+  .project-card .p-title {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-weight: 450;
+    letter-spacing: -0.3px;
+    margin-bottom: 10px;
+    line-height: 1.25;
+  }
+  .project-card .p-desc {
+    font-size: 0.82rem;
+    color: var(--text2);
+    line-height: 1.65;
+    font-weight: 400;
+  }
+  .project-card .p-tags {
+    display: flex; gap: 6px; flex-wrap: wrap; margin-top: 16px;
+  }
+  .project-card .p-tag {
+    font-size: 0.68rem; padding: 3px 10px; border-radius: 12px;
+    background: var(--accent-soft); color: var(--accent); font-weight: 450;
+    letter-spacing: 0.2px;
+  }
+
+  /* ---- Reading ---- */
+  #reading { background: var(--bg); }
+
+  .reading-list {
+    max-width: 580px; margin: 0 auto;
+    display: flex; flex-direction: column;
+  }
+  .reading-item {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 24px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border);
+    transition: all .3s cubic-bezier(0.16,1,0.3,1);
+    cursor: pointer;
+    position: relative;
+  }
+  .reading-item:first-child { border-top: 1px solid var(--border); }
+  .reading-item:hover { padding-left: 12px; }
+  .reading-item::after {
+    content: '→';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%) translateX(8px);
+    font-size: 1rem;
+    color: var(--text3);
+    opacity: 0;
+    transition: all .3s ease;
+    font-family: var(--font-serif);
+  }
+  .reading-item:hover::after { opacity: 1; transform: translateY(-50%) translateX(0); }
+  .reading-item .r-meta {
+    font-size: 0.72rem; color: var(--text3); font-weight: 440;
+    letter-spacing: 0.3px; padding-top: 3px;
+  }
+  .reading-item .r-title {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 450;
+    font-style: italic;
+    letter-spacing: -0.2px;
+    margin-bottom: 4px;
+    line-height: 1.25;
+  }
+  .reading-item .r-author {
+    font-size: 0.8rem; color: var(--text3); font-weight: 420;
+    margin-bottom: 8px;
+  }
+  .reading-item .r-note {
+    font-size: 0.82rem; color: var(--text2); line-height: 1.6; font-weight: 400;
+  }
+
+  /* ---- Book Detail Overlay (Chester-style page transition) ---- */
+  .book-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 32px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .4s cubic-bezier(0.16,1,0.3,1);
+  }
+  .book-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .book-overlay .book-back {
+    position: fixed;
+    top: 28px;
+    left: 32px;
+    z-index: 210;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    color: var(--text3);
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-family: var(--font-sans);
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: all .25s ease;
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  .book-overlay.open .book-back {
+    opacity: 1;
+    transform: translateX(0);
+    transition: all .4s .1s cubic-bezier(0.16,1,0.3,1);
+  }
+  .book-overlay .book-back:hover { color: var(--accent); background: var(--accent-soft); }
+
+  .book-detail {
+    max-width: 580px;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: all .5s .12s cubic-bezier(0.16,1,0.3,1);
+  }
+  .book-overlay.open .book-detail {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .book-detail .bd-status {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .book-detail .bd-title {
+    font-family: var(--font-serif);
+    font-size: 2.6rem;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: -1px;
+    line-height: 1.12;
+    margin-bottom: 12px;
+  }
+  .book-detail .bd-author {
+    font-size: 1rem;
+    color: var(--text3);
+    font-weight: 420;
+    margin-bottom: 36px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  .book-detail .bd-body {
+    font-size: 0.95rem;
+    line-height: 1.85;
+    color: var(--text2);
+    font-weight: 400;
+  }
+  .book-detail .bd-body p {
+    margin-bottom: 18px;
+  }
+  .book-detail .bd-body .highlight {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 2px 10px;
+    border-radius: 4px;
+    font-weight: 480;
+    margin: 0 2px;
+  }
+
+  /* ---- Info Overlay (Work & SCI) ---- */
+  .info-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 32px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .4s cubic-bezier(0.16,1,0.3,1);
+    overflow-y: auto;
+  }
+  .info-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .info-overlay .info-back {
+    position: fixed;
+    top: 28px;
+    left: 32px;
+    z-index: 210;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    color: var(--text3);
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-family: var(--font-sans);
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: all .25s ease;
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  .info-overlay.open .info-back {
+    opacity: 1;
+    transform: translateX(0);
+    transition: all .4s .1s cubic-bezier(0.16,1,0.3,1);
+  }
+  .info-overlay .info-back:hover { color: var(--accent); background: var(--accent-soft); }
+
+  .info-detail {
+    max-width: 620px;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: all .5s .12s cubic-bezier(0.16,1,0.3,1);
+  }
+  .info-overlay.open .info-detail {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .info-detail .id-tag {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .info-detail .id-title {
+    font-family: var(--font-serif);
+    font-size: 2.4rem;
+    font-weight: 400;
+    letter-spacing: -1px;
+    line-height: 1.12;
+    margin-bottom: 12px;
+  }
+  .info-detail .id-subtitle {
+    font-size: 0.95rem;
+    color: var(--text3);
+    font-weight: 420;
+    margin-bottom: 40px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Work experience cards */
+  .exp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .exp-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 30px;
+    transition: all .3s ease;
+  }
+  .exp-card:hover { border-color: var(--border-hover); box-shadow: var(--shadow-card); }
+  .exp-card .exp-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .exp-card .exp-role {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: -0.3px;
+  }
+  .exp-card .exp-org {
+    font-size: 0.9rem;
+    color: var(--accent);
+    font-weight: 480;
+  }
+  .exp-card .exp-dates {
+    font-size: 0.8rem;
+    color: var(--text3);
+    font-weight: 440;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+  .exp-card .exp-summary {
+    font-size: 0.86rem;
+    color: var(--text2);
+    margin-bottom: 12px;
+    line-height: 1.6;
+    font-weight: 440;
+  }
+  .exp-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .exp-card ul li {
+    font-size: 0.84rem;
+    color: var(--text2);
+    line-height: 1.7;
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 4px;
+  }
+  .exp-card ul li::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 8px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.5;
+  }
+  .exp-card ul li strong { color: var(--text); font-weight: 560; }
+
+  /* SCI paper cards */
+  .paper-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .paper-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: all .3s ease;
+  }
+  .paper-card:hover { border-color: var(--border-hover); box-shadow: var(--shadow-card); }
+  .paper-card .paper-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    border-bottom: 1px solid var(--border);
+  }
+  .paper-card .paper-body {
+    padding: 24px 28px;
+  }
+  .paper-card .paper-role {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .paper-card .paper-title {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 450;
+    letter-spacing: -0.3px;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+  .paper-card .paper-journal {
+    font-size: 0.8rem;
+    color: var(--text3);
+    margin-bottom: 14px;
+    font-weight: 440;
+  }
+  .paper-card .paper-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.82rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 480;
+    transition: all .2s ease;
+    padding: 6px 0;
+  }
+  .paper-card .paper-link:hover { opacity: 0.7; }
+  .paper-card .paper-link svg {
+    transition: transform .2s ease;
+  }
+  .paper-card .paper-link:hover svg {
+    transform: translateX(3px);
+  }
+
+  /* ---- Hobby ---- */
+  #hobby { background: var(--surface); }
+
+  .hobby-grid {
+    max-width: 620px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .hobby-card {
+    background: var(--bg);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    padding: 28px 20px;
+    text-align: center;
+    transition: all .35s cubic-bezier(0.16,1,0.3,1);
+    cursor: default;
+  }
+  .hobby-card:hover { border-color: var(--border-hover); box-shadow: var(--shadow-card); transform: translateY(-3px); }
+  .hobby-card .h-icon {
+    font-size: 2.2rem; margin-bottom: 14px; display: block;
+    transition: transform .3s ease;
+  }
+  .hobby-card:hover .h-icon { transform: scale(1.15); }
+  .hobby-card .h-name {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    font-weight: 450;
+    letter-spacing: -0.2px;
+    margin-bottom: 6px;
+  }
+  .hobby-card .h-desc {
+    font-size: 0.76rem;
+    color: var(--text2);
+    line-height: 1.55;
+    font-weight: 400;
+  }
+
+  /* ---- Footer ---- */
+  footer {
+    text-align: center; padding: 40px 32px;
+    color: var(--text3); font-size: 0.76rem; font-weight: 420;
+    letter-spacing: 0.2px;
+  }
+  footer a { color: var(--text2); text-decoration: none; transition: color .2s; }
+  footer a:hover { color: var(--accent); }
+
+  /* ---- Back to top ---- */
+  .back-top {
+    position: fixed; bottom: 28px; right: 28px; z-index: 150;
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--surface); border: 1px solid var(--border);
+    box-shadow: var(--shadow); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; color: var(--text2);
+    opacity: 0; transform: translateY(12px); pointer-events: none;
+    transition: all .3s cubic-bezier(0.16,1,0.3,1);
+  }
+  .back-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  .back-top:hover { color: var(--accent); border-color: var(--accent); box-shadow: var(--shadow-card); transform: translateY(-2px); }
+
+  /* ---- Reveal animation ---- */
+  .reveal {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity .6s cubic-bezier(0.16,1,0.3,1), transform .6s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 720px) {
+    .project-grid { grid-template-columns: 1fr; }
+    .project-card:nth-child(even) { margin-top: 0; }
+    .project-card:nth-child(odd) { margin-top: 0; }
+    .hobby-grid { grid-template-columns: 1fr 1fr; }
+    .kpi-row { grid-template-columns: repeat(2, 1fr); gap: 16px 0; }
+    .reading-item { grid-template-columns: 1fr; gap: 4px; }
+    .reading-item .r-meta { padding-top: 0; }
+    .reading-item::after { display: none; }
+    section { padding: 72px 20px; }
+    .home-content h1 { font-size: 2.2rem; }
+    nav .nav-links a { font-size: 0.74rem; padding: 5px 10px; }
+    nav .nav-inner { padding: 0 20px; }
+    .book-detail .bd-title { font-size: 1.8rem; }
+    .book-overlay { padding: 50px 20px; }
+    .book-overlay .book-back { top: 16px; left: 16px; }
+    .info-detail .id-title { font-size: 1.8rem; }
+    .info-overlay { padding: 50px 20px; }
+    .info-overlay .info-back { top: 16px; left: 16px; }
+    .exp-card .exp-dates { margin-left: 0; }
+    .paper-card .paper-img { height: 160px; }
+  }
+
+  @media (max-width: 400px) {
+    .hobby-grid { grid-template-columns: 1fr; }
+    .kpi-row { grid-template-columns: 1fr 1fr; }
+    nav .nav-logo { font-size: 0.9rem; }
+    nav .nav-links a { font-size: 0.68rem; padding: 4px 7px; letter-spacing: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ====== Nav ====== -->
+<nav id="nav">
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">张俊杰</div>
+    <div class="nav-links">
+      <a href="#home" class="active">Home</a>
+      <a href="#projects">Projects</a>
+      <a href="#reading">Reading</a>
+      <a href="#hobby">Hobby</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ====== Home ====== -->
+<section id="home">
+  <div class="home-content">
+    <img class="avatar" src="ZJJ照片.jpg" alt="张俊杰" onerror="this.style.display='none'">
+    <h1>B2B <span class="accent">Solution</span> Sales</h1>
+    <p class="lead">医疗行业深耕 &middot; 解决方案型销售 &middot; AI 工程化实践<br>用数据和洞察驱动业务增长</p>
+    <div class="chips">
+      <span class="chip fill">B2B 销售</span>
+      <span class="chip clickable" data-info="medical">医疗大健康</span>
+      <span class="chip">数据分析</span>
+      <span class="chip">AI 工程化</span>
+      <span class="chip">大客户经营</span>
+    </div>
+    <div class="kpi-row">
+      <div class="kpi">
+        <div class="number">1<span class="unit">亿+</span></div>
+        <div class="label">管理业务体量</div>
+      </div>
+      <div class="kpi">
+        <div class="number">98<span class="unit">%</span></div>
+        <div class="label">客户满意度</div>
+      </div>
+      <div class="kpi">
+        <div class="number">106<span class="unit">%</span></div>
+        <div class="label">季度业绩达成</div>
+      </div>
+      <div class="kpi">
+        <div class="number">2<span class="unit"> 篇</span></div>
+        <div class="label">二区 SCI 论文</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== Projects ====== -->
+<section id="projects">
+  <div class="section-header">
+    <div class="section-tag">Key Projects</div>
+    <h2>重点项目</h2>
+    <p>从增长到数据，从零到一的实战记录</p>
+  </div>
+
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="filterProjects('all', this)">全部</button>
+    <button class="tab-btn" onclick="filterProjects('growth', this)">增长</button>
+    <button class="tab-btn" onclick="filterProjects('data', this)">数据</button>
+    <button class="tab-btn" onclick="filterProjects('research', this)">研究</button>
+  </div>
+
+  <div class="project-grid">
+
+    <div class="project-card reveal" data-cat="growth">
+      <div class="p-num">01</div>
+      <div class="p-title">创造增量与回款优化</div>
+      <div class="p-desc">主导主力产品切换周期的客户沟通与交付方案，新版本覆盖率 95%，季度业务量环比增长 35%，产值 300 万+。3 个月回款率从 45% 拉升至 90%。</div>
+      <div class="p-tags"><span class="p-tag">增长</span><span class="p-tag">回款</span></div>
+    </div>
+
+    <div class="project-card reveal" data-cat="growth">
+      <div class="p-num">02</div>
+      <div class="p-title">从零搭建区域客户体系</div>
+      <div class="p-desc">30 天内完成市场摸排锁定 12 个高潜客户，逐一拜访谈判签约 7 家，首季即贡献增量产值超 20 万。</div>
+      <div class="p-tags"><span class="p-tag">增长</span><span class="p-tag">冷启动</span></div>
+    </div>
+
+    <div class="project-card reveal" data-cat="data">
+      <div class="p-num">03</div>
+      <div class="p-title">数据驱动存量客户激活</div>
+      <div class="p-desc">建立客户健康度打分模型，按交易频次、客单价、响应速度三维分层，3 个月内低活客户贡献率提升超 30%。</div>
+      <div class="p-tags"><span class="p-tag">数据</span><span class="p-tag">客户运营</span></div>
+    </div>
+
+    <div class="project-card reveal" data-cat="research" data-info="sci">
+      <div class="p-num">04</div>
+      <div class="p-title">两篇二区 SCI 论文发表</div>
+      <div class="p-desc">独立完成从项目设计、数据建模与分析到项目落地的全流程交付，2 篇论文均发表于中科院二区 SCI 期刊。点击查看论文详情 →</div>
+      <div class="p-tags"><span class="p-tag">研究</span><span class="p-tag">SCI</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ====== Reading ====== -->
+<section id="reading">
+  <div class="section-header">
+    <div class="section-tag">Reading</div>
+    <h2>阅读</h2>
+    <p>点击每本书查看详细笔记</p>
+  </div>
+
+  <div class="reading-list">
+
+    <div class="reading-item reveal" data-book="0">
+      <div class="r-meta">2025 &middot; 已读</div>
+      <div>
+        <div class="r-title">历史的温度</div>
+        <div class="r-author">张玮 &middot; 系列丛书（全7册）</div>
+        <div class="r-note">历史是万花筒，每个人看到的东西都不同。张玮用细节和故事，还原了那些课本上冷冰冰名字背后，一个个真实、复杂、有温度的人。</div>
+      </div>
+    </div>
+
+    <div class="reading-item reveal" data-book="1">
+      <div class="r-meta">2026 &middot; 在读</div>
+      <div>
+        <div class="r-title">The Hard Thing About Hard Things</div>
+        <div class="r-author">Ben Horowitz</div>
+        <div class="r-note">坦诚讲述创业中最艰难的那些时刻——裁员、现金流断裂、对手绝地反击。Horowitz 说："没有答案的时候，CEO 也必须做出决定。"</div>
+      </div>
+    </div>
+
+    <div class="reading-item reveal" data-book="2">
+      <div class="r-meta">2026 &middot; 已读</div>
+      <div>
+        <div class="r-title">邓小平时代</div>
+        <div class="r-author">傅高义</div>
+        <div class="r-note">一部厚重但极好读的传记。傅高义以学者严谨和记者笔法，还原了邓公在关键历史节点上的判断与行动。</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ====== Hobby ====== -->
+<section id="hobby">
+  <div class="section-header">
+    <div class="section-tag">Hobby</div>
+    <h2>工作之外</h2>
+    <p>让我保持好奇心和创造力的事情</p>
+  </div>
+
+  <div class="hobby-grid">
+
+    <div class="hobby-card reveal">
+      <span class="h-icon">🏊</span>
+      <div class="h-name">游泳</div>
+      <div class="h-desc">每周 1-2 次 3km，水中是最好的放空和思考时间</div>
+    </div>
+
+    <div class="hobby-card reveal">
+      <span class="h-icon">🤖</span>
+      <div class="h-name">AI 探索</div>
+      <div class="h-desc">用 Claude Code + 大模型搭建个人 AI 开发环境</div>
+    </div>
+
+    <div class="hobby-card reveal">
+      <span class="h-icon">📖</span>
+      <div class="h-name">阅读</div>
+      <div class="h-desc">历史、管理学、商业，保持跨领域的知识输入</div>
+    </div>
+
+    <div class="hobby-card reveal">
+      <span class="h-icon">🍵</span>
+      <div class="h-name">喝茶</div>
+      <div class="h-desc">以茉莉花茶为主，享受茶香中的宁静和仪式感</div>
+    </div>
+
+    <div class="hobby-card reveal">
+      <span class="h-icon">🎵</span>
+      <div class="h-name">音乐</div>
+      <div class="h-desc">流行、R&B、说唱，节奏驱动工作状态</div>
+    </div>
+
+    <div class="hobby-card reveal">
+      <span class="h-icon">🎯</span>
+      <div class="h-name">CS2</div>
+      <div class="h-desc">FPS 竞技游戏，锻炼反应速度、战术决策和团队博弈</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ====== Book Detail Overlay ====== -->
+<div class="book-overlay" id="bookOverlay">
+  <button class="book-back" id="bookBack" onclick="closeBook()">
+    <span>←</span> 返回
+  </button>
+  <div class="book-detail" id="bookDetail"></div>
+</div>
+
+<!-- ====== Info Overlay (Work & SCI) ====== -->
+<div class="info-overlay" id="infoOverlay">
+  <button class="info-back" id="infoBack" onclick="closeInfo()">
+    <span>←</span> 返回
+  </button>
+  <div class="info-detail" id="infoDetail"></div>
+</div>
+
+<!-- ====== Footer ====== -->
+<footer>
+  &copy; 2026 张俊杰 &nbsp;&middot;&nbsp;
+  <a href="mailto:zhangjunjie@example.com">Email</a> &nbsp;&middot;&nbsp;
+  Built with curiosity
+</footer>
+
+<!-- ====== Back to Top ====== -->
+<div class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+
+<script>
+// ---- Book data ----
+const books = [
+  {
+    status: '已读 &middot; 2025',
+    title: '历史的温度',
+    author: '张玮 &middot; 系列丛书（全7册）',
+    body: `<p>《历史的温度》是一个系列，一共七本。作者张玮是解放日报的记者出身，有很强的讲故事的功底。每篇文章都不长，围绕一个历史人物或一个事件展开，从大家熟悉的历史框架中挖出那些不为人知的细节。</p>
+      <p>这个系列最打动我的地方在于：它不讲大道理，只摆事实。比如你知道爱迪生是个伟大的发明家，但你不知道他在商业上有多么精于算计，甚至可以说是冷酷无情；你知道居里夫人获得了两次诺贝尔奖，但你不知道她因为私人情感问题曾被整个法国舆论围攻到精神崩溃。</p>
+      <p>张玮的写法是用细节让历史人物"活过来"。他们不再是课本上冷冰冰的名字，而是和我们一样有七情六欲、会犯错、会纠结的普通人。读完之后你不会觉得"哇这个人是神"，而是会觉得"原来他和我们一样啊"——这种感觉很奇妙，它让你对历史、对人性的理解都多了一层温柔。</p>
+      <p>我最推荐的是第七本《那些执念与信念》，这本能比较集中地看到一个人在巨大压力下如何坚守自己的判断——对做决策的人来说非常有共鸣。</p>`
+  },
+  {
+    status: '在读 &middot; 2026',
+    title: 'The Hard Thing About Hard Things',
+    author: 'Ben Horowitz',
+    body: `<p>这本书是硅谷顶级风投 a16z 联合创始人 Ben Horowitz 写的。它不是那种成功学鸡汤，恰恰相反——全书都在讲他在创业过程中遇到的那些最难的、几乎没有解的困境。</p>
+      <p>比如他描述公司账上只剩几周现金的时候怎么跟员工沟通；比如他不得不裁掉自己亲手招来的好朋友；比如竞争对手用半价挖走他所有的客户。Horowitz 的结论很坦诚："最难的那些事情，没有一个标准答案。但你是 CEO，你必须做决定，哪怕你不知道正确的答案是什么。"</p>
+      <p>我个人印象最深的一个观点是：<span class="highlight">创业公司不是一场短跑，甚至不是一场马拉松——它是一场没有终点的越野跑，你永远不知道下一个转弯后面是悬崖还是平原。</span></p>
+      <p>这本书适合任何需要在不完备信息下做出决策的人。你不一定是在创业，但那种"没人能帮你、你自己必须拍板"的状态，很多人在工作中都会遇到。</p>`
+  },
+  {
+    status: '已读 &middot; 2026',
+    title: '邓小平时代',
+    author: '傅高义',
+    body: `<p>傅高义是哈佛大学教授，研究中国超过半个世纪。这本书是他退休后用十年时间写成的，2011 年出版，2013 年出了中文版。全书七百多页，但读起来非常流畅——因为它本质上是一本"人"的传记，而不是一本政治理论著作。</p>
+      <p>书中还原了邓公在几个关键节点上的判断过程：1978 年决定改革开放、1979 年打越南、1984 年开放十四个沿海城市、1992 年南巡——每一个决定在当时都有巨大的争议和风险。傅高义没有回避那些争议，也没有给出简单的"对"或"错"，而是把当时的处境、各方的博弈、决策者的考量一一呈现出来。</p>
+      <p>读完之后我最大的感受是：<span class="highlight">"改革"不是一个抽象的好词，它是具体的、伴随着痛苦的利益再分配。一个好的决策者不是那个永远正确的人，而是那个在不确定性中敢于下注、并且敢于承担后果的人。</span></p>
+      <p>无论你对这段历史的立场如何，这本书作为史料和分析框架来说，都称得上一流。</p>`
+  }
+];
+
+// ---- Book detail overlay ----
+const bookOverlay = document.getElementById('bookOverlay');
+const bookDetail = document.getElementById('bookDetail');
+const bookBack = document.getElementById('bookBack');
+
+function openBook(index) {
+  const book = books[index];
+  bookDetail.innerHTML = `
+    <div class="bd-status">${book.status}</div>
+    <div class="bd-title">${book.title}</div>
+    <div class="bd-author">${book.author}</div>
+    <div class="bd-body">${book.body}</div>
+  `;
+  bookOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeBook() {
+  bookOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Click listeners on reading items
+document.querySelectorAll('.reading-item[data-book]').forEach(item => {
+  item.addEventListener('click', () => {
+    const idx = parseInt(item.dataset.book);
+    openBook(idx);
+  });
+});
+
+// ESC to close
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && bookOverlay.classList.contains('open')) {
+    closeBook();
+  }
+});
+
+// Click overlay background to close
+bookOverlay.addEventListener('click', (e) => {
+  if (e.target === bookOverlay) closeBook();
+});
+
+// ---- Nav scroll ----
+const nav = document.getElementById('nav');
+const backTop = document.getElementById('backTop');
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  nav.classList.toggle('scrolled', y > 20);
+  backTop.classList.toggle('visible', y > 500);
+
+  let current = '';
+  sections.forEach(s => {
+    if (y >= s.offsetTop - 150) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+
+// ---- Reveal on scroll ----
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const idx = Array.from(el.parentElement.children).indexOf(el);
+      el.style.transitionDelay = (idx * 0.05) + 's';
+      el.classList.add('visible');
+      revealObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ---- Project filter ----
+function filterProjects(cat, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.project-card').forEach(card => {
+    if (cat === 'all' || card.dataset.cat === cat) {
+      card.style.display = '';
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(8px)';
+      requestAnimationFrame(() => {
+        card.style.transition = 'opacity .35s ease, transform .35s ease';
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+      });
+    } else {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(4px)';
+      card.style.transition = 'opacity .2s ease, transform .2s ease';
+      setTimeout(() => { card.style.display = 'none'; }, 200);
+    }
+  });
+}
+
+// ---- Mouse tracking for project cards ----
+document.querySelectorAll('.project-card').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    card.style.setProperty('--mx', x + '%');
+    card.style.setProperty('--my', y + '%');
+  });
+});
+
+// ---- Info overlay (Work Experience & SCI) ----
+const infoOverlay = document.getElementById('infoOverlay');
+const infoDetail = document.getElementById('infoDetail');
+
+function openInfo(type) {
+  let content = '';
+
+  if (type === 'medical') {
+    content = `
+      <div class="id-tag">Medical &middot; Healthcare</div>
+      <div class="id-title">医疗大健康行业经验</div>
+      <div class="id-subtitle">2 段职业经历 &middot; 从大客户销售到区域业务操盘</div>
+      <div class="exp-list">
+        <div class="exp-card">
+          <div class="exp-header">
+            <span class="exp-role">区域业务经理</span>
+            <span class="exp-org">广州盛鑫达商贸有限公司</span>
+            <span class="exp-dates">2026.02 – 至今</span>
+          </div>
+          <div class="exp-summary">管理 20+ 产品线，月均业绩目标 180 万+，负责区域渠道生态建设与终端客户拓展</div>
+          <ul>
+            <li><strong>新客户开发与标杆打造：</strong>通过数据分析锁定高潜客户，独立完成客户筛选、需求挖掘、商务谈判与签约。一季度独立开发 7 个新客户，贡献营收 21.8 万元，验证了从 0 到 1 的客户开拓能力。</li>
+            <li><strong>存量客户深耕与业绩增长：</strong>建立月度客户数据复盘机制，按产品、客户、渠道三个维度定位增长瓶颈，针对性设计分层激励与赋能方案。一季度整体业绩完成率 106%，月均超额达成销售目标。</li>
+          </ul>
+        </div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <span class="exp-role">大客户销售</span>
+            <span class="exp-org">江西济民可信集团有限公司</span>
+            <span class="exp-dates">2024.07 – 2025.12</span>
+          </div>
+          <div class="exp-summary">独立管理过亿级业务体量、40+ 产品线，负责区域头部客户的全面经营与项目交付</div>
+          <ul>
+            <li><strong>大客户关系经营：</strong>维护 90% 以上关键决策人长期关系，建立周度业务复盘与 24h 响应机制，客户满意度 98%。具备与 VP 级以上高层进行战略沟通的能力。</li>
+            <li><strong>行业解决方案落地：</strong>洞察客户在市场准入、合规转型中的业务痛点，将公司产品能力转化为针对性解决方案，协同渠道伙伴拓展创新业务场景。3 个月推动 8 家头部客户签约，达成首轮目标 160%。</li>
+          </ul>
+        </div>
+      </div>
+    `;
+  } else if (type === 'sci') {
+    content = `
+      <div class="id-tag">Research &middot; SCI</div>
+      <div class="id-title">学术论文</div>
+      <div class="id-subtitle">2 篇二区 SCI &middot; 发表于 Frontiers in Ecology and Evolution</div>
+      <div class="paper-list">
+        <div class="paper-card">
+          <img class="paper-img" src="https://images.unsplash.com/photo-1548337138-e87d889cc369?w=800&q=80&fit=crop" alt="Offshore wind turbines at sea" onerror="this.style.display='none'">
+          <div class="paper-body">
+            <div class="paper-role">第一作者</div>
+            <div class="paper-title">Offshore wind power policies and green total factor productivity: empirical evidence from coastal China</div>
+            <div class="paper-journal">Frontiers in Ecology and Evolution &middot; 2023 &middot; 中科院二区</div>
+            <a class="paper-link" href="https://doi.org/10.3389/fevo.2023.1251787" target="_blank" rel="noopener">
+              View Paper <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 2H3C2.44772 2 2 2.44772 2 3V13C2 13.5523 2.44772 14 3 14H13C13.5523 14 14 13.5523 14 13V10M8 8L14 2M14 2H10M14 2V6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="paper-card">
+          <img class="paper-img" src="https://plus.unsplash.com/premium_photo-1673697239981-389164b7b87f?w=800&q=80&fit=crop" alt="Mountain ecosystem" onerror="this.style.display='none'">
+          <div class="paper-body">
+            <div class="paper-role">共同第二作者</div>
+            <div class="paper-title">Magnifier or refractor? Exploring the impact of geographical indication on people's perception of the value of cultural ecosystem services based on the SolVES model</div>
+            <div class="paper-journal">Frontiers in Ecology and Evolution &middot; 2023 &middot; 中科院二区</div>
+            <a class="paper-link" href="https://doi.org/10.3389/fevo.2023.1208169" target="_blank" rel="noopener">
+              View Paper <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 2H3C2.44772 2 2 2.44772 2 3V13C2 13.5523 2.44772 14 3 14H13C13.5523 14 14 13.5523 14 13V10M8 8L14 2M14 2H10M14 2V6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  infoDetail.innerHTML = content;
+  infoOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeInfo() {
+  infoOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Click listeners
+document.querySelectorAll('[data-info]').forEach(el => {
+  el.addEventListener('click', () => {
+    openInfo(el.dataset.info);
+  });
+});
+
+// ESC to close
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && infoOverlay.classList.contains('open')) {
+    closeInfo();
+  }
+});
+
+// Click overlay background to close
+infoOverlay.addEventListener('click', (e) => {
+  if (e.target === infoOverlay) closeInfo();
+});
+</script>
+
+</body>
+</html>
